@@ -1,6 +1,7 @@
 package com.garrettshorr.warofwords;
 
 import android.graphics.Color;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -16,6 +18,9 @@ import org.w3c.dom.Text;
  * Created by g on 2/13/2016.
  */
 public class PoliticiansFragment extends Fragment {
+
+    private ImageButton mShareButton;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -47,10 +52,15 @@ public class PoliticiansFragment extends Fragment {
         }
 
 
+
         p.getPoliticians().get(0).setWord(word1);
         p.getPoliticians().get(1).setWord(word2);
         PoliticianRVAdapter adapter = new PoliticianRVAdapter(p.getPoliticians());
         rv.setAdapter(adapter);
+
+        //share button
+        mShareButton = (ImageButton) rootView.findViewById(R.id.share_button);
+
 
         return rootView;
     }
