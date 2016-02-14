@@ -1,5 +1,6 @@
 package com.garrettshorr.warofwords;
 
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.AsyncTask;
@@ -64,13 +65,15 @@ public class WordCountFragment extends Fragment {
         mResult = (TextView) rootView.findViewById(R.id.search_result);
         mSearch = (EditText) rootView.findViewById(R.id.search_term);
         mSearchButton = (Button) rootView.findViewById(R.id.search_button);
-        mWord1 = new Word(0,0,0);
+        mWord1 = new Word(0,0,Word.SANDERS_TOTAL);
+        mWord2 = new Word(0,0,Word.CLINTON_TOTAL);
 
 
         mSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 search_sunlight_api(mSearch.getText().toString());
+
 
             }
         });
@@ -84,8 +87,10 @@ public class WordCountFragment extends Fragment {
 
 
     private void search_sunlight_api(String text) {
-        mUrl1 = mUrl2 = CAP_WORDS_URL + "/dates.json?total=true&percentages=true&phrase=" + mSearch.getText().toString().trim() +
-                "&bioguide_id=";
+        mUrl1 = mUrl2 = CAP_WORDS_URL + "/dates.json?total=true&percentages=true" +
+                "&start_date=1970-01-01&end_date=2016-02-01&granularity=day&phrase=" +
+                mSearch.getText().toString().trim() +
+                "&mincount=1&bioguide_id=";
         mUrl1 += SANDERS_ID + CAP_WORDS_APIKEY;
         mUrl2 += CLINTON_ID + CAP_WORDS_APIKEY;
         WordFetcher fetcher = new WordFetcher();
@@ -100,8 +105,8 @@ public class WordCountFragment extends Fragment {
             total += w.getTotal();
         }
         word.setCount(count);
-        word.setTotal(total);
-        word.setPercentage((double) count / total);
+        //word.setTotal(total);
+        word.calculatePercentage();
 
 
         getActivity().runOnUiThread(new Runnable() {
@@ -139,7 +144,6 @@ public class WordCountFragment extends Fragment {
 
         @Override
         protected String doInBackground(Void... params) {
-            URL url = null;
             fetchWords(mUrl1, mWord1);
             fetchWords(mUrl2, mWord2);
             return null;
@@ -173,6 +177,14 @@ public class WordCountFragment extends Fragment {
             }
         }
 
-
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            Intent i = new Intent(getActivity(), BattleActivity.class);
+            i.putExtra("word1", mWord1);
+            i.putExtra("word2", mWord2);
+            i.putExtra("battleWord",mSearch.getText().toString());
+            startActivity(i);
+        }
     }
 }

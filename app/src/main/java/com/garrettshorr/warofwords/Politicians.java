@@ -1,5 +1,7 @@
 package com.garrettshorr.warofwords;
 
+import android.graphics.Color;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +12,7 @@ public class Politicians {
     private String name;
     private int photoId;
     private Word word;
+    private int color;
 
     public Politicians(String name, int photoId, Word word) {
         this.name = name;
@@ -34,6 +37,14 @@ public class Politicians {
 
     public Word getWord() {
         return word;
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
     }
 
     public List<Politicians> getPoliticians() {

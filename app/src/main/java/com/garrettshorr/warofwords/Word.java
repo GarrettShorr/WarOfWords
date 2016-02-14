@@ -13,6 +13,10 @@ public class Word implements Parcelable {
     private int raw_count;
     private String day;
 
+    public static final int CLINTON_TOTAL = 79931772;
+    public static final int SANDERS_TOTAL = 135150394;
+
+
     public Word(int count, double percentage, int total) {
         this.count = count;
         this.percentage = percentage;
@@ -26,6 +30,10 @@ public class Word implements Parcelable {
         day = p.readString();
         total = p.readInt();
         raw_count = p.readInt();
+    }
+
+    public void calculatePercentage() {
+        percentage = (double) count / total;
     }
 
     public int getCount() {
