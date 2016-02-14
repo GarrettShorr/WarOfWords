@@ -26,19 +26,17 @@ public class MainActivity extends AppCompatActivity
         toolbar.setTitle("War of Words");
         setSupportActionBar(toolbar);
 
-        FragmentManager fm = getSupportFragmentManager();
-        fm.beginTransaction()
-                .add(R.id.fragment_container, new WordCountFragment(), "WordCountFragment")
-                .commit();
 
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment fragment;
+        if(fm.findFragmentByTag("WordCountFragment") == null)
+            fragment = new WordCountFragment();
+        else
+            fragment = fm.findFragmentByTag("WordCountFragment");
+
+            fm.beginTransaction()
+                .add(R.id.fragment_container, fragment, "WordCountFragment")
+                .commit();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

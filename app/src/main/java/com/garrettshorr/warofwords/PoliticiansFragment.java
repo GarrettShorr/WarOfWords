@@ -1,8 +1,11 @@
 package com.garrettshorr.warofwords;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.media.Image;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -59,9 +62,17 @@ public class PoliticiansFragment extends Fragment {
         rv.setAdapter(adapter);
 
         //share button
-        mShareButton = (ImageButton) rootView.findViewById(R.id.share_button);
-
-
+        FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "test");
+                sendIntent.setType("text/plain");
+                startActivity(sendIntent);
+            }
+        });
         return rootView;
     }
 }

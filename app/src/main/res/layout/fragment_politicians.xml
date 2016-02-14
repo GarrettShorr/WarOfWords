@@ -3,7 +3,8 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0077ff"
-    android:gravity="center">
+    android:gravity="center"
+    android:clipChildren="false">
     <TextView
         android:layout_alignParentTop="true"
         android:layout_marginBottom="5dp"
@@ -24,12 +25,13 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
+        android:layout_gravity="bottom"
+        android:scaleX="2"
+        android:scaleY="2"
         android:src="@android:drawable/ic_menu_share"
+        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:paddingBottom="12dp"/>
+        android:layout_margin="60dp"/>
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
