@@ -6,6 +6,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -91,20 +92,29 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment fragment = null;
+        FragmentTransaction ft = fm.beginTransaction();
+        switch(id) {
+            case R.id.nav_word_battle:
+                fragment = fm.findFragmentByTag("WordCountFragment");
+                if (fragment == null || !fragment.isVisible()) {
+                    fragment = new WordCountFragment();
+                    ft.replace(R.id.fragment_container, fragment, "WordCountFragment");
+                    ft.commit();
+                }
+                break;
+            case R.id.nav_frequent_words:
+                fragment = fm.findFragmentByTag("FrequentWordsFragment");
+                if (fragment == null || !fragment.isVisible()) {
+                    fragment = new FrequentWordsFragment();
+                    ft.replace(R.id.fragment_container, fragment, "FrequentWordsFragment");
+                    ft.commit();
+                }
+                break;
         }
+
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

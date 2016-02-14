@@ -13,4 +13,9 @@
     <string name="word_instructions">The Sunlight Foundation\'s Capitol Words API tracks the
         official congressional record from 1996 to the present day.  Enter a word below
         to see whether Bernie Sanders or Hillary Clinton said it more frequently!</string>
+
+    <string name="frequent_words_title">Select a candidate below to see his or her most
+    commonly used phrases as recorded in the official congressional record.</string>
+    <string name="nav_bar_title">War of Words</string>
+    <string name="nav_sub_title">Powered by Sunlight Foundation\'s Capitol Words API</string>
 </resources>
