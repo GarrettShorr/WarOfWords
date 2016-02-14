@@ -6,7 +6,11 @@
 
     <string name="action_settings">Settings</string>
 
-    <string name="search_text">Enter your search here</string>
-    <string name="search_button">Do they say this?</string>
+    <string name="search_text">Choose your battle word wisely</string>
+    <string name="search_button">WHO SAID THIS MORE?</string>
     <string name="battle_header">Battle over</string>
+    <string name="word_count_header">PREPARE FOR A WAR OF WORDS</string>
+    <string name="word_instructions">The Sunlight Foundation\'s Capitol Words API tracks the
+        official congressional record from 1996 to the present day.  Enter a word below
+        to see whether Bernie Sanders or Hillary Clinton said it more frequently!</string>
 </resources>

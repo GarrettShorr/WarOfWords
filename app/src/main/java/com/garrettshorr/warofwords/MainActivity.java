@@ -5,6 +5,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -29,14 +30,17 @@ public class MainActivity extends AppCompatActivity
 
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment;
-        if(fm.findFragmentByTag("WordCountFragment") == null)
+        FragmentTransaction ft = fm.beginTransaction();
+        if(fm.findFragmentByTag("WordCountFragment") == null) {
             fragment = new WordCountFragment();
-        else
+            ft.add(R.id.fragment_container, fragment, "WordCountFragment");
+        }
+        else {
             fragment = fm.findFragmentByTag("WordCountFragment");
+            ft.replace(R.id.fragment_container, fragment, "WordCountFragment");
+        }
 
-            fm.beginTransaction()
-                .add(R.id.fragment_container, fragment, "WordCountFragment")
-                .commit();
+        ft.commit();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

@@ -11,6 +11,25 @@
     tools:context="com.garrettshorr.warofwords.MainActivity">
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/word_count_header"
+        android:text="@string/word_count_header"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:textColor="#FF0000"
+        android:textSize="40dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/word_count_header"
+        android:id="@+id/instructions"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:text="@string/word_instructions"/>
+
+    <TextView
         android:id="@+id/search_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,6 +42,7 @@
         android:id="@+id/search_term"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/instructions"
         android:layout_alignParentStart="true"
         android:hint="@string/search_text"
         android:maxLines="1"
@@ -35,4 +55,5 @@
         android:id="@+id/search_button"
         android:layout_below="@+id/search_term"
         android:layout_alignParentStart="true" />
+
 </RelativeLayout>

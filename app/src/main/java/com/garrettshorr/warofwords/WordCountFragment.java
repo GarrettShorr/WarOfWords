@@ -112,7 +112,7 @@ public class WordCountFragment extends Fragment {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                mResult.setText(mWord1.toString());
+                //mResult.setText(mWord1.toString());
             }
         });
     }
