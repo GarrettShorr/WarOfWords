@@ -93,24 +93,30 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         FragmentManager fm = getSupportFragmentManager();
-        Fragment fragment = null;
-        FragmentTransaction ft = fm.beginTransaction();
         switch(id) {
             case R.id.nav_word_battle:
-                fragment = fm.findFragmentByTag("WordCountFragment");
-                if (fragment == null || !fragment.isVisible()) {
-                    fragment = new WordCountFragment();
-                    ft.replace(R.id.fragment_container, fragment, "WordCountFragment");
-                    ft.commit();
-                }
+                fm.beginTransaction()
+                    .replace(R.id.fragment_container, new WordCountFragment(), "WordCountFragment")
+                    .commit();
+
+//                fragment = fm.findFragmentByTag("WordCountFragment");
+//                if (fragment == null || !fragment.isVisible()) {
+//                    fragment = new WordCountFragment();
+//                    ft.replace(R.id.fragment_container, fragment, "WordCountFragment");
+//                    ft.commit();
+//                }
                 break;
             case R.id.nav_frequent_words:
-                fragment = fm.findFragmentByTag("FrequentWordsFragment");
-                if (fragment == null || !fragment.isVisible()) {
-                    fragment = new FrequentWordsFragment();
-                    ft.replace(R.id.fragment_container, fragment, "FrequentWordsFragment");
-                    ft.commit();
-                }
+                fm.beginTransaction()
+                        .replace(R.id.fragment_container, new FrequentWordsFragment(),
+                                "FrequentWordsFragment")
+                        .commit();
+//                fragment = fm.findFragmentByTag("FrequentWordsFragment");
+//                if (fragment == null || !fragment.isVisible()) {
+//                    fragment = new FrequentWordsFragment();
+//                    ft.replace(R.id.fragment_container, fragment, "FrequentWordsFragment");
+//                    ft.commit();
+//                }
                 break;
         }
 

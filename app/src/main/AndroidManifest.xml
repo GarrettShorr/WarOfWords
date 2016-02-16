@@ -25,6 +25,17 @@
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
+        <activity
+            android:name=".FrequentWordsListActivity"
+            android:label="WarOfWords"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+
+        <activity android:name=".Splash"
+            android:label="WarOfWords">
+
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET"/>

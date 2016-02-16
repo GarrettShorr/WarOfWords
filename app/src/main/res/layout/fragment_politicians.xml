@@ -2,9 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0077ff"
-    android:gravity="center"
-    android:clipChildren="false">
+    android:background="#0077ff">
     <TextView
         android:layout_alignParentTop="true"
         android:layout_marginBottom="5dp"
@@ -21,25 +19,30 @@
         android:text="@string/battle_header"
         android:id="@+id/battle_header"
         />
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:scaleX="2"
-        android:scaleY="2"
-        android:src="@android:drawable/ic_menu_share"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="60dp"/>
-
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_below="@id/battle_header"
         android:layout_height="wrap_content"
         android:id="@+id/politician_recycler_view"
-        android:clipToPadding="false">
+        android:clipToPadding="false"/>
 
-    </android.support.v7.widget.RecyclerView>
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:scaleX="1"
+            android:scaleY="1"
+            android:src="@android:drawable/ic_menu_share"
+            android:layout_margin="20dp"/>
+
+
+
+    </android.support.design.widget.CoordinatorLayout>
+
 
 </RelativeLayout>

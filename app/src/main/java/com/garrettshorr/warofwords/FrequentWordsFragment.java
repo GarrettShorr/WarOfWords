@@ -1,5 +1,6 @@
 package com.garrettshorr.warofwords;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -21,6 +22,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -32,6 +34,9 @@ public class FrequentWordsFragment extends Fragment {
     private ImageButton mHillary;
     private ImageButton mBernie;
     private String mUrl;
+    private List<FrequentWords> mFreq;
+    private String[] mFreqStrings;
+    private String mCandidate;
 
 
     private static final String API_URL = "http://capitolwords.org/api/1/phrases.json?entity_type=" +
@@ -57,14 +62,18 @@ public class FrequentWordsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 searchCommonWords(CLINTON_ID);
+                mCandidate = "Hillary Clinton";
             }
         });
         mBernie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 searchCommonWords(SANDERS_ID);
+                mCandidate = "Bernie Sanders";
             }
         });
+
+        mFreq = new ArrayList<>();
 
         return rootView;
     }
@@ -97,10 +106,17 @@ public class FrequentWordsFragment extends Fragment {
 
 //                JSONObject jsonObject = new JSONObject(json);
                 JSONArray jsonArray = new JSONArray(json);
-                Log.e("MAIN:", jsonArray.toString());
-//                Gson gson = new GsonBuilder().create();
-//                List<Word> words = Arrays.asList(gson.fromJson(internalObject.toString(), Word[].class));
-//                handleWord(words, word);
+                Gson gson = new GsonBuilder().create();
+//                for(JSONObject j : JSONArray) {
+//                    FrequentWords f = gson.fromJson(j, FrequentWords.class);
+//                }
+                mFreq = Arrays.asList(gson.fromJson(jsonArray.toString(),
+                        FrequentWords[].class));
+                mFreqStrings = new String[mFreq.size()];
+                Log.e("SUP: ", mFreq.toString());
+                for(int i = 0; i < mFreqStrings.length; i++) {
+                    mFreqStrings[i] = mFreq.get(i).toString();
+                }
             } catch (MalformedURLException e) {
                 e.printStackTrace();
 //                handleWordFailure();
@@ -111,6 +127,13 @@ public class FrequentWordsFragment extends Fragment {
                 e.printStackTrace();
             }
         }
-
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            Intent i = new Intent(getActivity(), FrequentWordsListActivity.class);
+            i.putExtra("strings", mFreqStrings);
+            i.putExtra("candidate",mCandidate );
+            startActivity(i);
+        }
     }
 }
